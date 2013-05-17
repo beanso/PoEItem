@@ -2,11 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02d15e0f-6645-48f9-9f90-756f13e401f8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/json.txt" />
+      <change type="DELETED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\blooo.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\exprow.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\header.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\ooo.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\test.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\testtt.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\y1o.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\y1o.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\yo.JPG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\yo.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PoEItem.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/main.py" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368754378718" ignored="false" />
+    <file path="/main.py" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368826990910" ignored="false" />
     <file path="/Dummy.txt" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368757357647" ignored="false" />
     <file path="/README" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368757817745" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,21 +40,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="22" selection-start="1367" selection-end="1367" vertical-scroll-proportion="0.0">
+            <state line="251" column="4" selection-start="9782" selection-end="9782" vertical-scroll-proportion="-0.11363637">
               <folding>
-                <element signature="e#76#119#0" expanded="true" />
+                <element signature="e#100#143#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README">
+      <file leaf-file-name="json.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/json.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="94" selection-start="335" selection-end="335" vertical-scroll-proportion="0.11764706">
+            <state line="0" column="270" selection-start="270" selection-end="271" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -73,8 +85,9 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/README" />
+        <option value="$PROJECT_DIR$/json.txt" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -227,6 +240,26 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PoEItem" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="Python.main" />
     </list>
@@ -293,18 +326,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32814237" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16221985" sideWeight="0.6718576" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.112059765" sideWeight="0.6718576" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16221985" sideWeight="0.66518354" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.112059765" sideWeight="0.66518354" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39955604" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33518314" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33481646" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -381,7 +414,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#76#119#0" expanded="true" />
+            <element signature="e#100#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -390,7 +423,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#76#119#0" expanded="true" />
+            <element signature="e#100#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -399,7 +432,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#76#119#0" expanded="true" />
+            <element signature="e#100#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -408,7 +441,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#76#119#0" expanded="true" />
+            <element signature="e#100#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -417,7 +450,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#76#119#0" expanded="true" />
+            <element signature="e#100#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -426,7 +459,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#76#119#0" expanded="true" />
+            <element signature="e#100#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -436,19 +469,56 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="22" selection-start="1367" selection-end="1367" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#76#119#0" expanded="true" />
-          </folding>
+        <state line="4" column="94" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README">
+    <entry file="file://$PROJECT_DIR$/images/Chimeric Noose.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/Blood Magic.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/Marohi Erqi.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/Sewer Keys.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/Ample Quicksilver Flask.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/json.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="94" selection-start="335" selection-end="335" vertical-scroll-proportion="0.11764706">
+        <state line="0" column="270" selection-start="270" selection-end="271" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/Taryn's Shiver.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="251" column="4" selection-start="9782" selection-end="9782" vertical-scroll-proportion="-0.11363637">
+          <folding>
+            <element signature="e#100#143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

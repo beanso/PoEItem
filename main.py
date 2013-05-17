@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 # import modules used here -- sys is a very standard one
 from PIL import Image, ImageFont, ImageDraw
@@ -10,10 +11,7 @@ tooltip_width = 0
 
 # Gather our code in a main() function
 def main(data):
-    #test = create_row([("bob", (99, 99, 99)), ("  dude", (255, 255, 255))], 500, 100)
-    #test.save("images/testtt.png", "PNG")
     global tooltip_width
-    print data
     obj = json.loads(data)
     tooltip_width = determine_width(obj) + 50 + 44 * 2
     header = make_header(obj)
@@ -40,12 +38,11 @@ def main(data):
     for img in all_images:
         base.paste(img, (0, cur_pos))
         cur_pos = cur_pos + img.size[1]
-    base.save("images/header.png")
-    #make_requirements(obj)
+        #make_requirements(obj)
     #make_explicit_mods(obj)
-
-
-    make_tooltip(obj)
+    name = obj["name"] if obj["name"] != "" else obj["typeLine"]
+    print "Saving {}.png".format(name)
+    make_tooltip(obj).save("images/" + name + ".png", "PNG")
 
 
 def make_tooltip(item_obj):
@@ -68,14 +65,11 @@ def make_tooltip(item_obj):
                    (74, 162, 29)]
 
     info = type_info[item_obj["frameType"]]
-    sep = Image.new("RGBA", (tooltip_width, 8))
-    sep_src = Image.open("images/headers/" + info["separator"], "r")
-    sep.paste(sep_src, (sep.size[0] / 2 - sep_src.size[0] / 2, sep.size[1] / 2 - sep_src.size[1] / 2), sep_src)
     all_images = []
     global tooltip_width
     tooltip_width = determine_width(item_obj) + 30 + info["header_end_width"] * 2
+    sep_src = Image.open("images/headers/" + info["separator"], "r")
     sep = create_row([sep_src], tooltip_width, 8)
-    print tooltip_width
     # header
     header = make_header(item_obj)
     all_images.append(header)
@@ -103,12 +97,12 @@ def make_tooltip(item_obj):
         #explicits
     if "explicitMods" in item_obj:
         all_images.append(make_explicit_mods(item_obj))
-        all_images.append(sep)
     if "additionalProperties" in item_obj:
-        all_images.append(make_experience_bar(item_obj))
         all_images.append(sep)
+        all_images.append(make_experience_bar(item_obj))
 
     if "descrText" in item_obj:
+        all_images.append(sep)
         import textwrap
 
         for line in textwrap.wrap(item_obj["descrText"], tooltip_width / 7):
@@ -116,23 +110,23 @@ def make_tooltip(item_obj):
             all_images.append(row)
 
     if "flavourText" in item_obj:
+        all_images.append(sep)
         for line in item_obj["flavourText"]:
             row = create_row([(line, (175, 96, 37))], tooltip_width, 20)
             all_images.append(row)
 
-    merge_images(all_images, 1).save("images/blooo.png", "PNG")
+    result = merge_images(all_images, 1)
 
-    return
+    return result
 
 
 def determine_width(obj):
     img = Image.new("RGB", (1, 1))
     img_drawer = ImageDraw.Draw(img)
     name_width = img_drawer.textsize(obj["name"])[0]
-    typeline_width = img_drawer.textsize(obj["typeLine"])[0]
+    typeline_width = img_drawer.textsize(obj["typeLine"].encode("utf-8"))[0]
     explicit_width = 0
     flavour_width = 0
-
     prop_width = 0
     if "properties" in obj:
         for p in obj["properties"]:
@@ -192,7 +186,7 @@ def make_header(obj):
             Image.open("images/headers/UniqueHeaderSingleLineRight.png")],
     }
     cur_header = headers[obj["frameType"]]
-    needs_unid_header = not obj["identified"] and obj["frameType"] == 2 or obj["frameType"] == 3
+    needs_unid_header = not obj["identified"] and (obj["frameType"] == 2 or obj["frameType"] == 3)
     if needs_unid_header:
         cur_header = unid_headers[obj["frameType"]]
     header_tile_width, header_tile_height = cur_header[0].size
@@ -209,7 +203,7 @@ def make_header(obj):
     biggest = name_width
     if type_width > name_width:
         biggest = type_width
-    full_width = biggest + header_tile_width * 2
+
     global tooltip_width
     #tooltip_width = full_width + 50
     num = int(tooltip_width / header_tile_width) + 1
@@ -222,6 +216,7 @@ def make_header(obj):
             header.paste(headers[frame_type][1], (inc * header_tile_width, 0))
         inc += 1
 
+    # if item is unidentified and needs special 1 line header (magic, rare)
     if needs_unid_header:
         header.paste(unid_headers[frame_type][0], (0, 0))
         header.paste(unid_headers[frame_type][2], (tooltip_width - header_tile_width, 0))
@@ -238,6 +233,7 @@ def make_header(obj):
                    (74, 162, 29)]
 
     image_drawer = ImageDraw.Draw(header)
+    # Currency, gems, etc are only generic types and have 1 line headers so they use only typeLine
     if name != "":
         image_drawer.text((tooltip_width / 2 - name_width / 2, header_tile_height / 4 / 2 - 2), name, font=font,
                           fill=item_colors[frame_type])
@@ -245,7 +241,6 @@ def make_header(obj):
                           typeLine,
                           font=font, fill=item_colors[frame_type])
     else:
-
         font = ImageFont.truetype("Fontin-SmallCaps.ttf", 16)
         type_width, _ = image_drawer.textsize(typeLine, font)
         image_drawer.text((tooltip_width / 2 - type_width / 2, header_tile_height - (header_tile_height) + 8), typeLine,
@@ -258,29 +253,21 @@ def make_single_property(json_str, separator=False):
     obj = json.loads(json_str)
     name = obj["name"]
     values = obj["values"]
-    display_mode = obj["displayMode"]
 
-    #private Color[] itemColors = {  Color.FromArgb(159, 158, 130), Color.FromArgb(107, 136, 255),       // Normal, Magic
-    #                                    Color.FromArgb(255, 255, 119), Color.FromArgb(175, 96, 37),         // Rare, Unique
-    #                                    Color.FromArgb(27, 162, 127), Color.FromArgb(170, 143, 88) };       // Gem, Currency
-    #    private Color[] valueColors = { Color.FromArgb(255, 255, 255), Color.FromArgb(107, 136, 255),       // White, Supplemented (blue)
-    #                                    Color.FromArgb(99,99,99), Color.FromArgb(99,99,99),                 // ?, ?
-    #                                    Color.FromArgb(150, 1, 2), Color.FromArgb(31, 100, 146)             // Red fire dmg, Blue cold dmg
-    #                                  };
+    item_colors = [(159, 158, 130), # Normal
+                   (107, 136, 255), # Magic
+                   (255, 255, 119), # Rare
+                   (175, 96, 37), # Unique
+                   (27, 162, 127), # Gem
+                   (170, 143, 88)]      # Currency
 
-    item_colors = [(159, 158, 130), #Normal
-                   (107, 136, 255), #Magic
-                   (255, 255, 119), #Rare
-                   (175, 96, 37), #Unique
-                   (27, 162, 127), #Gem
-                   (170, 143, 88)]      #Currency
-    value_colors = [(255, 255, 255), #White
-                    (107, 136, 255), #Supplemented
-                    (99, 99, 99), #Grey
-                    (99, 99, 99), #Gray
-                    (150, 1, 2), #Fire dmg
-                    (31, 100, 146), #Cold dmg
-                    (255, 201, 3)]      #Light damage
+    value_colors = [(255, 255, 255), # White
+                    (107, 136, 255), # Supplemented
+                    (99, 99, 99), # Grey
+                    (99, 99, 99), # Gray
+                    (150, 1, 2), # Fire dmg
+                    (31, 100, 146), # Cold dmg
+                    (255, 201, 3)]      # Light damage
 
     grey = (99, 99, 99)
     global tooltip_width
@@ -294,7 +281,6 @@ def make_single_property(json_str, separator=False):
     property_images.append(image)
 
     if values:
-
         #Iterate through values, determine colors, and create images
         for (count, value) in enumerate(values):
             value_text = value[0]
@@ -316,8 +302,7 @@ def make_single_property(json_str, separator=False):
     for i in property_images:
         image.paste(i, (cur_pos, 0))
         cur_pos = cur_pos + i.size[0]
-        #image = merge_images(property_images)
-    #Paste merged image into base image, centered vertically and horizontally
+        #Paste merged image into base image, centered vertically and horizontally
     base_img.paste(image, (tooltip_width / 2 - image.size[0] / 2, base_img.size[1] / 2 - image.size[1] / 2), image)
     return base_img
 
@@ -348,12 +333,10 @@ def make_requirements(data):
     name = "Requires "
     image = make_text_image(name, value_colors[2])
     property_images.append(image)
-    texts = []
-    texts.append((name, (99, 99, 99)))
+    texts = [(name, (99, 99, 99))]
     for (count, requirement) in enumerate(requirements):
         requirement_name = requirement["name"]
         requirement_value = requirement["values"][0][0]
-        text_color = value_colors[requirement["values"][0][1]]
         display_mode = requirement["displayMode"]
 
         if display_mode == 1:
@@ -389,7 +372,6 @@ def make_requirements(data):
     #Paste merged image into base image, centered vertically and horizontally
     base_img.paste(image, (tooltip_width / 2 - image.size[0] / 2, base_img.size[1] / 2 - image.size[1] / 2), image)
     return create_row(texts, tooltip_width, 20)
-    return base_img
 
 
 def make_explicit_mods(data):
@@ -405,7 +387,6 @@ def make_explicit_mods(data):
     incr = text_size[1]
     cur_pos = 0
     for e in explicit:
-        text_img = make_text_image(e, (107, 136, 255))
         real_text_img = create_row([(e, (107, 136, 255))], tooltip_width, 20)
         explicits.append(real_text_img)
 
@@ -413,7 +394,6 @@ def make_explicit_mods(data):
         img.paste(e, (0, cur_pos))
         cur_pos = cur_pos + incr
     img = merge_images(explicits, 1)
-    img.save("images/test.png", "png")
     return img
 
 
@@ -430,7 +410,6 @@ def make_implicit_mods(data):
     incr = text_size[1]
     cur_pos = 0
     for e in implicit:
-        text_img = make_text_image(e, (107, 136, 255))
         real_text_img = create_row([(e, (107, 136, 255))], tooltip_width, 20)
         implicits.append(real_text_img)
 
@@ -438,18 +417,17 @@ def make_implicit_mods(data):
         img.paste(e, (0, cur_pos))
         cur_pos = cur_pos + incr
     img = merge_images(implicits, 1)
-    img.save("images/test.png", "png")
     return img
 
 
-def create_row(list, width, height):
+def create_row(part_list, width, height):
     images = []
 
-    if isinstance(list[0], Image.Image):
-        for t in list:
+    if isinstance(part_list[0], Image.Image):
+        for t in part_list:
             images.append(t)
     else:
-        for t in list:
+        for t in part_list:
             img = make_text_image(t[0], t[1])
             images.append(img)
 
@@ -483,7 +461,6 @@ def merge_images(images, orientation):
         merged = Image.new("RGB", (width, height))
         cur_pos = 0
         for i in images:
-            print i
             merged.paste(i, (0, cur_pos))
             cur_pos += i.size[1]
     return merged
@@ -528,7 +505,13 @@ def make_text_image(text, color, font="Fontin-SmallCaps.ttf", font_size=14):
 # Standard boilerplate to call the main() function to begin
 # the program.
 
-data = r"""{"verified":false,"w":1,"h":1,"icon":"https:\/\/web-grindinggear.netdna-ssl.com\/image\/Art\/2DItems\/QuestItems\/SewerKey.png?v=e13442fd3af868e107cbeb470380b0dd","support":true,"league":"Hardcore","sockets":[],"name":"","typeLine":"Sewer Keys","identified":true,"flavourText":["To enter a city's bowels is to be\r","privy to its best-kept secrets. "],"frameType":6,"x":11,"y":3,"inventoryId":"MainInventory","socketedItems":[]}"""
+data = r"""{"verified":false,"w":1,"h":1,"icon":"http:\/\/webcdn.pathofexile.com\/image\/Art\/2DItems\/Amulets\/Amulet7.png?v=ecac1e6f4574572eeef0379d955811cd","support":true,"league":"Hardcore","sockets":[],"name":"Chimeric Noose","typeLine":"Onyx Amulet","identified":true,"requirements":[{"name":"Level","values":[["24",0]],"displayMode":0}],"implicitMods":["+20 to all Attributes"],"explicitMods":["Adds 1-2 Cold Damage","38% increased Global Critical Strike Multiplier","+8% to Cold Resistance","+1 Mana Gained when you Kill an enemy"],"frameType":2,"x":0,"y":0,"inventoryId":"Amulet","socketedItems":[]}"""
 
 if __name__ == '__main__':
-    main(data)
+    import sys
+
+    if len(sys.argv) > 1:
+        main(sys.argv[1])
+    else:
+        f = open("json.txt")
+        main(f.read())
