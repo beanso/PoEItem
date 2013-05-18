@@ -274,36 +274,60 @@ def make_single_property(json_str, separator=False):
 
     base_img = Image.new("RGB", (tooltip_width, 20), (0, 0, 0, 0))
     property_images = []
-    #Create name image
-    if values:
-        name += ": "
-    image = make_text_image(name, value_colors[2])
-    property_images.append(image)
+    if (obj["displayMode"] != 3):
+        #Create name image
+        if values and name != "":
+            name += ": "
+        image = make_text_image(name, value_colors[2])
+        property_images.append(image)
 
-    if values:
-        #Iterate through values, determine colors, and create images
-        for (count, value) in enumerate(values):
-            value_text = value[0]
+        if values:
+            #Iterate through values, determine colors, and create images
+            for (count, value) in enumerate(values):
+                value_text = value[0]
 
-            text_color = value_colors[value[1]]
-            image = make_text_image(value_text, text_color)
-            property_images.append(image)
-            if len(values) > 1 and count < len(values) - 1:
-                image = make_text_image(", ", grey)
+                text_color = value_colors[value[1]]
+                image = make_text_image(value_text, text_color)
                 property_images.append(image)
+                if len(values) > 1 and count < len(values) - 1:
+                    image = make_text_image(", ", grey)
+                    property_images.append(image)
 
-    #Merge all images
-    total_text_width = 0
-    for i in property_images:
-        total_text_width = total_text_width + i.size[0]
+        #Merge all images
+        total_text_width = 0
+        for i in property_images:
+            total_text_width = total_text_width + i.size[0]
 
-    image = Image.new("RGBA", (total_text_width, property_images[0].size[1]), (217, 65, 126, 0))
-    cur_pos = 0
-    for i in property_images:
-        image.paste(i, (cur_pos, 0))
-        cur_pos = cur_pos + i.size[0]
-        #Paste merged image into base image, centered vertically and horizontally
-    base_img.paste(image, (tooltip_width / 2 - image.size[0] / 2, base_img.size[1] / 2 - image.size[1] / 2), image)
+        image = Image.new("RGBA", (total_text_width, property_images[0].size[1]), (217, 65, 126, 0))
+        cur_pos = 0
+        for i in property_images:
+            image.paste(i, (cur_pos, 0))
+            cur_pos = cur_pos + i.size[0]
+            #Paste merged image into base image, centered vertically and horizontally
+        base_img.paste(image, (tooltip_width / 2 - image.size[0] / 2, base_img.size[1] / 2 - image.size[1] / 2), image)
+    else:
+        name_words = name.split(" ")
+        words_colors = []
+        import re
+
+        expr = re.compile(r"%\d+")
+        matched = 0
+        for w in name_words:
+            if expr.match(w):
+                color = value_colors[values[matched][1]]
+                words_colors.append((values[matched][0], color))
+                matched += 1
+                continue
+            words_colors.append((w, (99, 99, 99)))
+
+        word_images = []
+        for w in words_colors:
+            word_images.append(make_text_image(w[0], w[1]))
+            word_images.append(make_text_image(" ", (255, 255, 255)))
+
+        row = create_row(word_images, tooltip_width, 20)
+        return row
+
     return base_img
 
 
