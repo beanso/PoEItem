@@ -21,6 +21,11 @@ def main(data):
 
 
 def make_tooltip(item_obj):
+    """
+    Determine which components are necessary and assemble the tooltip
+    :param item_obj: JSON object
+    :return: PIL.Image.Image of final tooltip
+    """
     type_info = [
         {"separator": "NormalSeparator.png", "header_end_width": 29},
         {"separator": "MagicSeparator.png", "header_end_width": 29},
@@ -51,7 +56,7 @@ def make_tooltip(item_obj):
     # properties
     if "properties" in item_obj:
         for prop in item_obj["properties"]:
-            new_prop = make_single_property(json.dumps(prop))
+            new_prop = make_single_property(prop)
             all_images.append(new_prop)
         all_images.append(sep)
 
@@ -94,10 +99,15 @@ def make_tooltip(item_obj):
 
 
 def determine_width(obj):
+    """
+    Determine width needed for tooltip to fit text
+    :param obj: JSON object
+    :return: the width
+    """
     img = Image.new("RGB", (1, 1))
     img_drawer = ImageDraw.Draw(img)
     font = ImageFont.truetype("Fontin-SmallCaps.ttf", 18)
-    name_width = img_drawer.textsize(obj["name"], font)[0]
+    name_width = img_drawer.textsize(obj["name"].encode("utf-8"), font)[0]
     typeline_width = img_drawer.textsize(obj["typeLine"].encode("utf-8"), font)[0]
     explicit_width = 0
     flavour_width = 0
@@ -128,6 +138,11 @@ def determine_width(obj):
 
 
 def make_header(obj):
+    """
+    Create the header of the tooltip
+    :param obj: JSON object
+    :return: the header image
+    """
     headers = {
         0: [Image.open("images/headers/NormalHeaderLeft.png"),
             Image.open("images/headers/NormalHeaderMiddle.png"),
@@ -219,8 +234,12 @@ def make_header(obj):
     return header
 
 
-def make_single_property(json_str, separator=False):
-    obj = json.loads(json_str)
+def make_single_property(obj):
+    """
+    Make a property row
+    :param obj: JSON object
+    :return: row image for the property
+    """
     name = obj["name"]
     values = obj["values"]
 
@@ -285,6 +304,11 @@ def make_properties(data):
 
 
 def make_requirements(data):
+    """
+    Create the requirements row image
+    :param data:
+    :return:
+    """
     obj = data["requirements"]
     requirements = obj
 
