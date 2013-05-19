@@ -14,32 +14,7 @@ def main(data):
     global tooltip_width
     obj = json.loads(data)
     tooltip_width = determine_width(obj) + 50 + 44 * 2
-    header = make_header(obj)
-    all_images = [header]
-    obj = json.loads(data)
-    if "properties" in obj:
-        for prop in obj["properties"]:
-            new_prop = make_single_property(json.dumps(prop))
-            all_images.append(new_prop)
-    sep = Image.new("RGBA", (tooltip_width, 8))
-    sep_src = Image.open("images/headers/UniqueSeparator.png", "r")
-    sep.paste(sep_src, (sep.size[0] / 2 - sep_src.size[0] / 2, sep.size[1] / 2 - sep_src.size[1] / 2), sep_src)
-    all_images.append(sep)
-    #all_images.append(make_requirements(obj))
-    all_images.append(sep)
-    #all_images.append(make_explicit_mods(obj))
-    height = 0
-    width = all_images[0].size[0]
-    for img in all_images:
-        height = height + img.size[1]
 
-    base = Image.new("RGB", (width, height))
-    cur_pos = 0
-    for img in all_images:
-        base.paste(img, (0, cur_pos))
-        cur_pos = cur_pos + img.size[1]
-        #make_requirements(obj)
-    #make_explicit_mods(obj)
     name = obj["name"] if obj["name"] != "" else obj["typeLine"]
     print "Saving {}.png".format(name)
     make_tooltip(obj).save("images/" + name + ".png", "PNG")
@@ -67,7 +42,7 @@ def make_tooltip(item_obj):
     info = type_info[item_obj["frameType"]]
     all_images = []
     global tooltip_width
-    tooltip_width = determine_width(item_obj) + 30 + info["header_end_width"] * 2
+    tooltip_width = determine_width(item_obj) + 50 + info["header_end_width"] * 2
     sep_src = Image.open("images/headers/" + info["separator"], "r")
     sep = create_row([sep_src], tooltip_width, 8)
     # header
@@ -115,16 +90,15 @@ def make_tooltip(item_obj):
             row = create_row([(line, (175, 96, 37))], tooltip_width, 20)
             all_images.append(row)
 
-    result = merge_images(all_images, 1)
-
-    return result
+    return merge_images(all_images, 1)
 
 
 def determine_width(obj):
     img = Image.new("RGB", (1, 1))
     img_drawer = ImageDraw.Draw(img)
-    name_width = img_drawer.textsize(obj["name"])[0]
-    typeline_width = img_drawer.textsize(obj["typeLine"].encode("utf-8"))[0]
+    font = ImageFont.truetype("Fontin-SmallCaps.ttf", 18)
+    name_width = img_drawer.textsize(obj["name"], font)[0]
+    typeline_width = img_drawer.textsize(obj["typeLine"].encode("utf-8"), font)[0]
     explicit_width = 0
     flavour_width = 0
     prop_width = 0
@@ -200,12 +174,8 @@ def make_header(obj):
     image_drawer = ImageDraw.Draw(img)
     name_width, _ = image_drawer.textsize(name, font)
     type_width, _ = image_drawer.textsize(typeLine, font)
-    biggest = name_width
-    if type_width > name_width:
-        biggest = type_width
 
     global tooltip_width
-    #tooltip_width = full_width + 50
     num = int(tooltip_width / header_tile_width) + 1
     header = Image.new('RGBA', (tooltip_width, header_tile_height))
     inc = 0
@@ -254,13 +224,6 @@ def make_single_property(json_str, separator=False):
     name = obj["name"]
     values = obj["values"]
 
-    item_colors = [(159, 158, 130), # Normal
-                   (107, 136, 255), # Magic
-                   (255, 255, 119), # Rare
-                   (175, 96, 37), # Unique
-                   (27, 162, 127), # Gem
-                   (170, 143, 88)]      # Currency
-
     value_colors = [(255, 255, 255), # White
                     (107, 136, 255), # Supplemented
                     (99, 99, 99), # Grey
@@ -271,10 +234,8 @@ def make_single_property(json_str, separator=False):
 
     grey = (99, 99, 99)
     global tooltip_width
-
-    base_img = Image.new("RGB", (tooltip_width, 20), (0, 0, 0, 0))
     property_images = []
-    if (obj["displayMode"] != 3):
+    if obj["displayMode"] != 3:
         #Create name image
         if values and name != "":
             name += ": "
@@ -293,18 +254,7 @@ def make_single_property(json_str, separator=False):
                     image = make_text_image(", ", grey)
                     property_images.append(image)
 
-        #Merge all images
-        total_text_width = 0
-        for i in property_images:
-            total_text_width = total_text_width + i.size[0]
-
-        image = Image.new("RGBA", (total_text_width, property_images[0].size[1]), (217, 65, 126, 0))
-        cur_pos = 0
-        for i in property_images:
-            image.paste(i, (cur_pos, 0))
-            cur_pos = cur_pos + i.size[0]
-            #Paste merged image into base image, centered vertically and horizontally
-        base_img.paste(image, (tooltip_width / 2 - image.size[0] / 2, base_img.size[1] / 2 - image.size[1] / 2), image)
+        return create_row(property_images, tooltip_width, 20)
     else:
         name_words = name.split(" ")
         words_colors = []
@@ -328,8 +278,6 @@ def make_single_property(json_str, separator=False):
         row = create_row(word_images, tooltip_width, 20)
         return row
 
-    return base_img
-
 
 def make_properties(data):
     properties = None
@@ -350,8 +298,6 @@ def make_requirements(data):
 
     grey = (99, 99, 99)
     global tooltip_width
-
-    base_img = Image.new("RGB", (tooltip_width, 20), (0, 0, 0, 0))
     property_images = []
     #Create name image
     name = "Requires "
@@ -382,66 +328,30 @@ def make_requirements(data):
             image = make_text_image(", ", grey)
             texts.append((", ", (99, 99, 99)))
             property_images.append(image)
-            #Merge all images
-    total_text_width = 0
-    for i in property_images:
-        total_text_width = total_text_width + i.size[0]
 
-    image = Image.new("RGBA", (total_text_width, property_images[0].size[1]), (217, 65, 126, 0))
-    cur_pos = 0
-    for i in property_images:
-        image.paste(i, (cur_pos, 0))
-        cur_pos = cur_pos + i.size[0]
-
-    #Paste merged image into base image, centered vertically and horizontally
-    base_img.paste(image, (tooltip_width / 2 - image.size[0] / 2, base_img.size[1] / 2 - image.size[1] / 2), image)
     return create_row(texts, tooltip_width, 20)
 
 
 def make_explicit_mods(data):
     global tooltip_width
     explicit = data["explicitMods"]
-
-    font = ImageFont.truetype("Fontin-SmallCaps.ttf", 14)
-    img = Image.new("RGBA", (1, 1), (255, 255, 255, 0))
-    img_drawer = ImageDraw.Draw(img)
-    text_size = img_drawer.textsize("Blahblah 20%", font)
-    img = img.resize((tooltip_width, text_size[1] * len(explicit)))
     explicits = []
-    incr = text_size[1]
-    cur_pos = 0
     for e in explicit:
         real_text_img = create_row([(e, (107, 136, 255))], tooltip_width, 20)
         explicits.append(real_text_img)
 
-    for e in explicits:
-        img.paste(e, (0, cur_pos))
-        cur_pos = cur_pos + incr
-    img = merge_images(explicits, 1)
-    return img
+    return merge_images(explicits, 1)
 
 
 def make_implicit_mods(data):
     global tooltip_width
     implicit = data["implicitMods"]
-
-    font = ImageFont.truetype("Fontin-SmallCaps.ttf", 14)
-    img = Image.new("RGBA", (1, 1), (255, 255, 255, 0))
-    img_drawer = ImageDraw.Draw(img)
-    text_size = img_drawer.textsize("Blahblah 20%", font)
-    img = img.resize((tooltip_width, text_size[1] * len(implicit)))
     implicits = []
-    incr = text_size[1]
-    cur_pos = 0
     for e in implicit:
         real_text_img = create_row([(e, (107, 136, 255))], tooltip_width, 20)
         implicits.append(real_text_img)
 
-    for e in implicits:
-        img.paste(e, (0, cur_pos))
-        cur_pos = cur_pos + incr
-    img = merge_images(implicits, 1)
-    return img
+    return merge_images(implicits, 1)
 
 
 def create_row(part_list, width, height):
@@ -503,12 +413,10 @@ def make_experience_bar(data):
         bar_back.paste(bar_fill, (cur_pos, 3))
         cur_pos += 1
 
-    bar_back.save("images/yo.png", "PNG")
     progress_text = make_text_image(" " + obj["values"][0][0], color=(255, 255, 255))
 
     global tooltip_width
     bar_back = bar_back.convert("RGBA")
-    bar_back.save("images/yo.png", "PNG")
     exp_row = create_row([bar_back, progress_text], tooltip_width, 20)
     return exp_row
 
@@ -526,10 +434,6 @@ def make_text_image(text, color, font="Fontin-SmallCaps.ttf", font_size=14):
     img_drawer.text(pos, text, color, font)
     return img
 
-# Standard boilerplate to call the main() function to begin
-# the program.
-
-data = r"""{"verified":false,"w":1,"h":1,"icon":"http:\/\/webcdn.pathofexile.com\/image\/Art\/2DItems\/Amulets\/Amulet7.png?v=ecac1e6f4574572eeef0379d955811cd","support":true,"league":"Hardcore","sockets":[],"name":"Chimeric Noose","typeLine":"Onyx Amulet","identified":true,"requirements":[{"name":"Level","values":[["24",0]],"displayMode":0}],"implicitMods":["+20 to all Attributes"],"explicitMods":["Adds 1-2 Cold Damage","38% increased Global Critical Strike Multiplier","+8% to Cold Resistance","+1 Mana Gained when you Kill an enemy"],"frameType":2,"x":0,"y":0,"inventoryId":"Amulet","socketedItems":[]}"""
 
 if __name__ == '__main__':
     import sys
