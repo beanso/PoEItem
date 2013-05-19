@@ -1,6 +1,6 @@
 Utility to create pictoral representations of items in Path of Exile.
 
-![Marohi Erqi](/images/Marohi Erqi.png "Marohi Erqi")
+![Marohi Erqi](/images/Marohi Erqi.png?raw=true "Marohi Erqi")
 
 Currently using the internal JSON representation of the item to create the tooltip but will expand to a Chrome extension allowing you to create a picture from the site.
 
