@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02d15e0f-6645-48f9-9f90-756f13e401f8" name="Default" comment="">
-      <change type="MOVED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\images\Marohi Erqi.png" afterPath="$PROJECT_DIR$/images/Marohi_Erqi.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PoEItem.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/main.py" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368937846007" ignored="false" />
-    <file path="/Dummy.txt" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368938423235" ignored="false" />
+    <file path="/Dummy.txt" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368938460990" ignored="false" />
     <file path="/README" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368938452534" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +43,7 @@
       <file leaf-file-name="README" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="15" selection-start="86" selection-end="86" vertical-scroll-proportion="0.05944056">
+            <state line="2" column="0" selection-start="71" selection-end="71" vertical-scroll-proportion="0.05944056">
               <folding />
             </state>
           </provider>
@@ -336,7 +335,11 @@
       <created>1368938424657</created>
       <updated>1368938424657</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="updated readme">
+      <created>1368938462150</created>
+      <updated>1368938462150</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -478,7 +481,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="15" selection-start="86" selection-end="86" vertical-scroll-proportion="0.05944056">
+        <state line="2" column="0" selection-start="71" selection-end="71" vertical-scroll-proportion="0.05944056">
           <folding />
         </state>
       </provider>
