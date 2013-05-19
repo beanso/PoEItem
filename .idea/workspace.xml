@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02d15e0f-6645-48f9-9f90-756f13e401f8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/Marohi Erqi.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PoEItem.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/main.py" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368937846007" ignored="false" />
-    <file path="/Dummy.txt" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368938117494" ignored="false" />
-    <file path="/README" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368829879708" ignored="false" />
+    <file path="/Dummy.txt" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368938158456" ignored="false" />
+    <file path="/README" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368938250439" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,10 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="42" selection-start="2118" selection-end="2118" vertical-scroll-proportion="0.21328671">
+            <state line="63" column="42" selection-start="2118" selection-end="2118" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#100#143#0" expanded="true" />
               </folding>
@@ -40,10 +40,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="README" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="99" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0">
+            <state line="2" column="51" selection-start="122" selection-end="122" vertical-scroll-proportion="0.05944056">
               <folding />
             </state>
           </provider>
@@ -83,9 +83,9 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/README" />
         <option value="$PROJECT_DIR$/json.txt" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/README" />
       </list>
     </option>
   </component>
@@ -315,7 +315,11 @@
       <created>1368938122230</created>
       <updated>1368938122230</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary=".,..">
+      <created>1368938159640</created>
+      <updated>1368938159640</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -404,7 +408,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value=".,.." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -422,6 +426,7 @@
     <MESSAGE value="cleaning up code&#10;reads json from txt for easier testing" />
     <MESSAGE value="support for formatted displayMode (used for potions)" />
     <MESSAGE value="refactoring" />
+    <MESSAGE value=".,.." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -430,13 +435,6 @@
     <entry file="file://$PROJECT_DIR$/images/headers/CurrencyHeaderLeft.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="99" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/json.txt">
@@ -453,10 +451,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="42" selection-start="2118" selection-end="2118" vertical-scroll-proportion="0.21328671">
+        <state line="63" column="42" selection-start="2118" selection-end="2118" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#100#143#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="51" selection-start="122" selection-end="122" vertical-scroll-proportion="0.05944056">
+          <folding />
         </state>
       </provider>
     </entry>
