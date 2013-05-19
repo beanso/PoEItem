@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02d15e0f-6645-48f9-9f90-756f13e401f8" name="Default" comment="">
-      <change type="MOVED" beforePath="C:\Users\Benno\Documents\Aptana Studio 3 Workspace\PoEItem\README" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PoEItem.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/main.py" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368937846007" ignored="false" />
-    <file path="/Dummy.txt" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368938481102" ignored="false" />
+    <file path="/Dummy.txt" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368938527702" ignored="false" />
     <file path="/README" changelist="02d15e0f-6645-48f9-9f90-756f13e401f8" time="1368938452534" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +43,7 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="71" selection-end="71" vertical-scroll-proportion="0.05944056">
+            <state line="2" column="1" selection-start="72" selection-end="72" vertical-scroll-proportion="0.05944056">
               <folding />
             </state>
           </provider>
@@ -86,6 +86,7 @@
         <option value="$PROJECT_DIR$/json.txt" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/README" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -343,7 +344,11 @@
       <created>1368938482731</created>
       <updated>1368938482731</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="updated readme">
+      <created>1368938529104</created>
+      <updated>1368938529104</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -485,7 +490,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="71" selection-end="71" vertical-scroll-proportion="0.05944056">
+        <state line="2" column="1" selection-start="72" selection-end="72" vertical-scroll-proportion="0.05944056">
           <folding />
         </state>
       </provider>
